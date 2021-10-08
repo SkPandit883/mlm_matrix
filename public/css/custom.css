@@ -1,0 +1,31 @@
+.header_title{
+    color: white;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: cyan;
+}
+.tf-custom .tf-nc {
+  height:80px; 
+  width: 80px;
+  padding: 0;
+  background-color: #212F3D;
+  border-radius: 10%;
+}
+
+/* make the horizontal and vertical connectors thick and change their color */
+
+.tf-custom .tf-nc:before,
+.tf-custom .tf-nc:after {
+  border-left-color: dodgerblue;
+  border-left-width: 2px;
+  color: white;
+}
+.tf-nc{
+  color: white;
+  font-size:20px
+}
+
+.tf-custom li li:before {
+  border-top-color: dodgerblue;
+  border-top-width: 2px;
+}
