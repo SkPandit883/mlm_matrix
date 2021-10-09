@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-Route::get('/treeView','MlmController@treeView');
+Route::get('/treeView','MlmController@treeView')->name('treeView');
+Route::get('/downline','MlmController@downline')->name('downline');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

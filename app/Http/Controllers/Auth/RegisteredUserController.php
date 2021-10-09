@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\ReferalCode;
 use Brian2694\Toastr\Facades\Toastr;
+use Str;
 
 class RegisteredUserController extends Controller
 {
@@ -54,6 +55,10 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $referal_code=ReferalCode::create([
+             'user_id'=>$user->id,
+             'referal_code'=>$user->id."R".Str::random(4)
+        ]);
         event(new Registered($user));
 
         Auth::login($user);
