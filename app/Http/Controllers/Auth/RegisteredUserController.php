@@ -61,7 +61,8 @@ class RegisteredUserController extends Controller
              'referal_code'=>$user->id."R".Str::random(4)
         ]);
         if($matrix->level+1<=3){
-            $level=$matrix->level+1;
+            $level = $matrix->level+1;
+            $parent_id=$matrix->user_id;
             if($matrix->left_child === NULL){
                 $key='left_child';
             }elseif($matrix->middle_child === NULL){
@@ -74,7 +75,14 @@ class RegisteredUserController extends Controller
         }else{
             return redirect()->back()->with('error','Exceeds Depth of the MLM');
         }
-       
+        $matrix->update([
+                 $key =>$user->id
+        ]);
+        $new_matrix=Matrix::create([
+                    'user_id'=>$user->id,
+                    'parent_id'=>$parent_id,
+                    'level'=>$level
+        ]);
         event(new Registered($user));
 
         Auth::login($user);
