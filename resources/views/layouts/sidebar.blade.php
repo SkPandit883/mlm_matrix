@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head>
         {{-- fonts --}}
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -14,7 +13,8 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/daisyui@1.3.11/dist/full.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://unpkg.com/treeflex/dist/css/treeflex.css">
-    </head>
+        <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
 </head>
 <body>
     <div class="flex flex-no-wrap">
@@ -346,7 +346,10 @@
            }
        }
    
-   </script>           
+   </script>     
+   <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+   <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+   {!! Toastr::message() !!}      
 </body>
 </html>
 

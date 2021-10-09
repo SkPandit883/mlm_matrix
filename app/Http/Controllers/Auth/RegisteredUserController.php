@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Models\ReferalCode;
+use Brian2694\Toastr\Facades\Toastr;
 
 class RegisteredUserController extends Controller
 {
@@ -33,6 +35,12 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        $referal_code_exist=ReferalCode::where('referal_code',$request->referal_code)->first();
+        if(!$referal_code_exist){
+            Toastr::error('Invalid Referal Code','Error');
+            return redirect()->back()->with('error','Invalid Referal Code');
+        }
+        
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -40,6 +48,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = User::create([
+            'refer_id'=>$referal_code_exist->user_id,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -49,6 +58,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('home');
     }
 }
