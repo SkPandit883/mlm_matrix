@@ -12,6 +12,9 @@ class Matrix extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
+    public function parent(){
+        return $this->belongTo(User::class,'parent_id','id');
+    }
     public function left_child(){
         return $this->hasOne(Matrix::class,'parent_id','left_child');
     }

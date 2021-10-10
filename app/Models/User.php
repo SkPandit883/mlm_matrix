@@ -49,7 +49,9 @@ class User extends Authenticatable
     public function matrix(){
         return $this->hasOne(Matrix::class,'user_id');
     }
-
+    public function matrix_child(){
+        return $this->hasMany(Matrix::class,'parent_id','id');
+    }
     public function left_child(){
         return $this->hasOne(Matrix::class,'left_child');
     }
