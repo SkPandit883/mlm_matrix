@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Matrix;
 use App\Models\User;
+use App\Models\ReferalCode;
+use Auth;
+
 class MlmController extends Controller
 {
    public function treeView(){
@@ -20,5 +23,10 @@ class MlmController extends Controller
    public function downline(){
        $users=User::with('referal_code')->orderBy('id','ASC')->get();
        return view('downline',compact('users'));
+   }
+   public function referal(){
+       $referal=ReferalCode::where('user_id',Auth::user()->id)->first();
+       $referal_code= $referal->referal_code;
+       return view('referal',compact('referal_code'));
    }
 }

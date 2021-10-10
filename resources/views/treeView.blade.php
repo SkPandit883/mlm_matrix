@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 @section('content')
 <div>
-    <h2>Tree View..</h2>
+  <h2 class="text-xl mt-5">Tree View</h2>
 </div>
 <div class="tf-tree tf-custom mt-10">
     <ul>
