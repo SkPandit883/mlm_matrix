@@ -6,7 +6,7 @@
 <div class="tf-tree tf-custom mt-10">
     <ul>
       <li>
-        <span class="tf-nc">User ID(1)</span>
+        <span class="tf-nc">Admin (1)</span>
         <ul>
          @foreach ($level_one as $l_one)
             <li>
