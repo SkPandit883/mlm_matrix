@@ -8,15 +8,27 @@
       <li>
         <span class="tf-nc">1</span>
         <ul>
-          <li>
-            <span class="tf-nc">{{$level_zero->left_child}}</span>
-          </li>
-          <li>
-            <span class="tf-nc">{{$level_zero->middle_child}}</span>
-          </li>
-          <li>
-            <span class="tf-nc">{{$level_zero->right_child}}</span>
-          </li>
+         @foreach ($level_one as $l_one)
+            <li>
+              <span class="tf-nc">User ID({{$l_one->user_id}})</span>
+              <ul>
+                 @foreach ($level_two as $l_two)
+                    @if($l_one->user_id===$l_two->parent_id)
+                      <li>
+                        <span class="tf-nc">User ID({{$l_two->user_id}})</span>
+                        <ul>
+                          @foreach($level_three as $l_three)
+                            @if ($l_two->user_id == $l_three->parent_id)
+                              <li><span class="tf-nc">User ID({{$l_three->user_id}})</span></li>  
+                            @endif
+                          @endforeach
+                        </ul>
+                      </li>
+                   @endif
+                 @endforeach
+              </ul>
+            </li>
+         @endforeach
         </ul>
       </li>
      
