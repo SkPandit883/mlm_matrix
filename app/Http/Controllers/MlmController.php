@@ -4,14 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Matrix;
-
+use App\Models\User;
 class MlmController extends Controller
 {
    public function treeView(){
-       $data = array();
-       $child=array();
-       $temp=array();
-       $matrix = Matrix::with(['left_child','middle_child','right_child'])->get();
+       
        $level_zero=Matrix::where('level',0)->first();
        $level_one=Matrix::where('level',1)->get();
        $level_two=Matrix::where('level',2)->get();
@@ -21,6 +18,7 @@ class MlmController extends Controller
       
    }
    public function downline(){
-       return view('downline');
+       $users=User::with('referal_code')->orderBy('id','ASC')->get();
+       return view('downline',compact('users'));
    }
 }

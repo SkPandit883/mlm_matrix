@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
 @section('content')
-<div class="flex flex-col">
+<div class="flex flex-col mt-10">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -17,34 +17,49 @@
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Role
                 </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                   Referal Code
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Refer Buy
+                </th>
+                
                
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div class="ml-4">
-                      <div class="text-sm font-medium text-gray-900">
-                        Flora Wu
+                @foreach ($users as $user)
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <div class="ml-4">
+                          <div class="text-sm font-medium text-gray-900">
+                          {{$user->name}}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-500">Software engineer, IT</div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-500">flora.wu@example.com</div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Admin
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                </td>
-              </tr>
-             
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm text-gray-500">{{$user->email}}</div>
+                    </td>
+                    
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                       @if($user->isAdmin===1)
+                         Admin
+                       @else
+                         User
+                       @endif
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-500">{{$user->referal_code->referal_code}}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-500">{{$user->refer_id}}</div>
+                    </td>
+                  </tr>
+    
+                @endforeach
+                           
               <!-- More people... -->
             </tbody>
           </table>
